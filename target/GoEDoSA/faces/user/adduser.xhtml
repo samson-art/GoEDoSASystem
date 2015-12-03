@@ -1,0 +1,55 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:fn="http://java.sun.com/jsp/jstl/functions">
+
+<h:head><title>GoEDoSA System</title></h:head>
+
+<h:body>
+    <h:form>
+        <p:menubar>
+            <p:menuitem value="Home" icon="ui-icon-home" action="index"/>
+            <p:submenu label="Users" icon="ui-icon-person">
+                <p:menuitem value="New" icon="ui-icon-plus" action="add_user"/>
+                <p:menuitem value="List" icon="ui-icon-document-b" action="user_list"/>
+            </p:submenu>
+        </p:menubar>
+    </h:form>
+
+    <h:form>
+        <p:messages id="messages" showDetail="true" autoUpdate="true" />
+        <h:panelGrid columns="2" cellpadding="5">
+
+            <p:outputLabel for="firstname" value="Name"/>
+            <p:inputText id="firstname" value="#{userAddMB.firstname}" required="true"/>
+            <p:outputLabel for="lastname" value="Lastname"/>
+            <p:inputText id="lastname" value="#{userAddMB.lastname}" required="true"/>
+            <p:outputLabel for="login" value="Login"/>
+            <p:inputText id="login" value="#{userAddMB.login}" required="true"/>
+
+            <p:outputLabel for="pwd1" value="Password" />
+            <p:password id="pwd1" value="#{userAddMB.password}" match="pwd2" required="true" />
+            <p:outputLabel for="pwd2" value="Confirm password" />
+            <p:password id="pwd2" value="#{userAddMB.password}" required="true" />
+
+            <p:outputLabel for="role" value="User role" />
+            <p:selectOneListbox id="role" value="#{userAddMB.user_role_id}" required="true">
+                <f:selectItems value="#{userAddMB.userRoles}" var="r" itemLabel="#{r.role}"
+                               itemValue="#{r.id}"/>
+
+                <p:column>
+                    <h:outputLink id="role-#{r.id}" value="#">
+                        <h:outputText value="#{r.role}" />
+                    </h:outputLink>
+                    <p:tooltip for="role-#{r.id}" value="#{r.description}" showEvent="focus" hideEvent="blur"/>
+                </p:column>
+
+            </p:selectOneListbox>
+        </h:panelGrid>
+
+        <p:commandButton action="#{userAddMB.addUser()}" value="Save" />
+    </h:form>
+
+</h:body>
+</html>

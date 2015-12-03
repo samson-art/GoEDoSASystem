@@ -1,0 +1,19 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:fn="http://java.sun.com/jsp/jstl/functions">
+<h:head><title>GoEDoSA System</title></h:head>
+<h:body>
+    <h:form>
+        <p:messages id="messages" showDetail="true" autoUpdate="true" />
+        <h:panelGrid columns="2" cellpadding="5">
+            <p:outputLabel for="login" value="Login"/>
+            <p:inputText id="login" value="#{loginMB.login}" required="true"/>
+            <p:outputLabel for="password" value="Password"/>
+            <p:password id="password" value="#{loginMB.password}" required="true"/>
+        </h:panelGrid>
+        <p:commandButton value="Login" action="#{loginMB.login()}"/>
+    </h:form>
+</h:body>
+</html>
