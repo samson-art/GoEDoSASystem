@@ -1,0 +1,36 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:fn="http://java.sun.com/jsp/jstl/functions" xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head><title>GoEDoSASystem</title></h:head>
+<h:body>
+
+    <ui:composition template="/pages/protected/layouts/mainlayout.xhtml">
+        <ui:define name="content">
+            <p:dataTable var="u" value="#{userListMB.users}">
+                <f:facet name="header">
+                    List of users
+                </f:facet>
+
+                <p:column headerText="Id">
+                    <h:outputText value="#{u.id}" />
+                </p:column>
+
+                <p:column headerText="Login">
+                    <h:outputText value="#{u.login}" />
+                </p:column>
+
+                <p:column headerText="Password">
+                    <h:outputText value="#{u.password}" />
+                </p:column>
+
+                <f:facet name="footer">
+                    In total there are #{fn:length(userListMB.users)} users.
+                </f:facet>
+            </p:dataTable>
+        </ui:define>
+    </ui:composition>
+
+</h:body>
+</html>

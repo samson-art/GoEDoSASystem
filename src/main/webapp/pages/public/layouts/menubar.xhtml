@@ -1,0 +1,15 @@
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+    <p:menubar>
+        <p:menuitem value="Home" icon="ui-icon-home" action="#{navigationMB.toWelcome()}"/>
+        <p:menuitem value="Dictionary" icon="ui-icon-document" action="#{navigationMB.toDictionary()}"/>
+        <p:menuitem value="Users" icon="ui-icon-person" action="#{navigationMB.toUserList()}"/>
+        <c:if test="#{loginMB.currentUser!=null}">
+            <p:menuitem value="Logout" icon="ui-icon-circle-close" action="#{loginMB.logout()}"/>
+        </c:if>
+    </p:menubar>
+
+</ui:composition>
