@@ -1,8 +1,9 @@
-package ru.mephi.goedosa.DAO;
+package ru.mephi.goedosa.dao;
 
-import ru.mephi.goedosa.DAO.interfaces.*;
-import ru.mephi.goedosa.DAO.interfaces.EntryDAO;
-import ru.mephi.goedosa.DAO.interfaces.UserDAO;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import ru.mephi.goedosa.dao.interfaces.DAOFactory;
+import ru.mephi.goedosa.dao.interfaces.DefinitionDAO;
 import ru.mephi.goedosa.exceptions.PersistException;
 
 import javax.annotation.PostConstruct;
@@ -17,12 +18,27 @@ import java.sql.SQLException;
 @Singleton
 public class PostgreSQLDAOFactory implements DAOFactory {
 
-    public UserDAO getUserDAO() throws PersistException {
-        return new ru.mephi.goedosa.DAO.UserDAO(getConnection());
+    private static final Logger logger = LoggerFactory.getLogger(PostgreSQLDAOFactory.class);
+
+//    private static final String DBUSER = "sgoedosaadmin";
+//    private static final String DBPASSWORD = "password";
+//    private static final String DBURL = "jdbc:postgresql://localhost:5432/sgoedosa";
+//    private static final String DBDRIVER = "org.postgresql.Driver";
+
+    public UserDAOImpl getUserDAO() throws PersistException {
+        return new UserDAOImpl(getConnection());
+    }
+
+    public EntryDAOImpl getEntryDAO() throws PersistException {
+        return new EntryDAOImpl(getConnection());
+    }
+
+    public DefinitionDAO getDefinitionDAO() throws PersistException {
+        return new DefinitionDAOImpl(getConnection());
     }
 
     public Connection getConnection() throws PersistException {
-        String user = "postgres";
+        String user = "sgoedosaadmin";
         String password = "password";
         String url = "jdbc:postgresql://localhost:5432/sgoedosa";
         try {
@@ -32,20 +48,14 @@ public class PostgreSQLDAOFactory implements DAOFactory {
         }
     }
 
-    public EntryDAO getEntryDAO() throws PersistException {
-        return new ru.mephi.goedosa.DAO.EntryDAO(getConnection());
-    }
-
     @PostConstruct
     private void init() {
-        String driver = "org.postgresql.Driver";
         try {
-            Class.forName(driver);
+            Class.forName("org.postgresql.Driver");
             logger.info("Driver registered!");
-            logger.info(driver);
+            logger.info("org.postgresql.Driver");
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
     }
-
 }

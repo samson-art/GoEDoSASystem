@@ -5,7 +5,7 @@ import java.io.Serializable;
 /**
  * Created by artemsamsonov on 27.11.15.
  */
-public abstract class Entity implements Serializable {
+public class Entity implements Serializable {
 
     private int id;
 

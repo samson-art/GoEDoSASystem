@@ -1,8 +1,6 @@
-package ru.mephi.goedosa.DAO.abstracts;
+package ru.mephi.goedosa.dao.abstracts;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import ru.mephi.goedosa.DAO.interfaces.GenericDAO;
+import ru.mephi.goedosa.dao.interfaces.GenericDAO;
 import ru.mephi.goedosa.entity.Entity;
 import ru.mephi.goedosa.exceptions.PersistException;
 
@@ -15,8 +13,6 @@ import java.util.List;
  * Created by artemsamsonov on 27.11.15.
  */
 public abstract class AbstractJDBCDAO<T extends Entity> implements GenericDAO<T> {
-
-    protected final Logger logger = LoggerFactory.getLogger(AbstractJDBCDAO.class);
 
     protected Connection connection;
 

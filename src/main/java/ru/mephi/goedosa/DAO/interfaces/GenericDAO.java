@@ -1,4 +1,4 @@
-package ru.mephi.goedosa.DAO.interfaces;
+package ru.mephi.goedosa.dao.interfaces;
 
 import ru.mephi.goedosa.exceptions.PersistException;
 

@@ -1,8 +1,8 @@
 package ru.mephi.goedosa.bean.auth;
 
 
-import ru.mephi.goedosa.DAO.interfaces.DAOFactory;
-import ru.mephi.goedosa.DAO.interfaces.UserDAO;
+import ru.mephi.goedosa.dao.interfaces.DAOFactory;
+import ru.mephi.goedosa.dao.interfaces.UserDAO;
 import ru.mephi.goedosa.bean.navigation.NavigationBean;
 import ru.mephi.goedosa.entity.User;
 import ru.mephi.goedosa.exceptions.PersistException;
